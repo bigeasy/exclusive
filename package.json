@@ -1,0 +1,44 @@
+{
+    "name":                 "exclusive",
+    "version":              "0.1.0",
+    "description":
+
+      "Run only one process at a time in a cluster.",
+
+    "keywords":
+    [
+                            "paxos", "database", "database", "network", "consensus",
+                            "atomic", "broadcast", "multi-paxos"
+    ],
+    "author":               "Alan Gutierrez <alan@prettyrobots.com>",
+    "homepage":             "https://github.com/bigeasy/exclusive",
+    "bugs":                 "https://github.com/bigeasy/exclusive/issues",
+    "license":              "MIT",
+    "repository":
+    {
+                            "type": "git",
+                            "url": "http://github.com/bigeasy/exclusive.git"
+    },
+    "dependencies":
+    {
+                            "arguable":                     "4.3.x",
+                            "cadence":                      "1.0.x",
+                            "conference":                   "0.2.x",
+                            "resurrect":                    "0.0.x"
+    },
+    "devDependencies":
+    {
+                            "proof":                        "1.2.x",
+                            "paxos":                        "3.8.x",
+                            "islander":                     "0.1.x"
+    },
+    "main":                 "exclusive.bin",
+    "bin":
+    {
+                            "exclusive":                    "exclusive.bin.js"
+    },
+    "scripts":
+    {
+                            "test": "proof platform win32 && proof test */*.t.js || t/test"
+    }
+}
