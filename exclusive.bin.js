@@ -23,7 +23,7 @@ require('arguable')(module, require('cadence')(function (async, program) {
     var Shuttle = require('prolific.shuttle')
     var abend = require('abend')
 
-    var logger = require('prolific.logger').createLogger('bigeasy.reinstate.bin')
+    var logger = require('prolific.logger').createLogger('bigeasy.exclusive')
 
     var shuttle = Shuttle.shuttle(program, logger)
 
