@@ -2,14 +2,10 @@ require('proof')(1, require('cadence')(prove))
 
 function prove (async, assert) {
     var Exclusive = require('../exclusive')
-    var Copacetic = require('../copacetic')
-    var copacetic = new Copacetic('island')
-    var colleague = copacetic.createColleague('1')
-    var exclusive = new Exclusive(colleague, [ 'node', 't/term.js' ])
-    /*
-    colleague.bootstrap()
+    var exclusive = new Exclusive('node', 't/term.js')
     async(function () {
-        copacetic.bootstrap('1', async())
+        exclusive.immigrate({ isLeader: true }, async())
+    }, function () {
+        exclusive.immigrate({ isLeader: false }, async())
     })
-    */
 }
