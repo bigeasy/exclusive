@@ -22,6 +22,8 @@
     },
     "dependencies":
     {
+                            "compassion.conduit":           "0.3.x",
+                            "compassion":                   "0.1.x",
                             "mingle":                       "0.2.x",
                             "mingle.static":                "0.2.x",
                             "prolific":                     "5.0.x",

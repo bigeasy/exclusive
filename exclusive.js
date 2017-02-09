@@ -15,7 +15,7 @@ function Exclusive (argv) {
 // Start our child process if we're the leader, stop it if we're not.
 
 //
-Exclusive.prototype.immigrate = cadence(function (async, conference) {
+Exclusive.prototype.government = cadence(function (async, conference) {
     if (conference.isLeader) {
         this.child.start()
     } else {

@@ -16,29 +16,27 @@
  */
 require('arguable')(module, require('cadence')(function (async, program) {
     program.helpIf(program.ultimate.help)
-    program.required('discovery', 'health')
-
-    var http = require('http')
-
-    var colleague = Colleague.connect(process)
-    var exclusive = new Exclusive(program.argv)
-
-    var conference = Conference.create(exclusive, function (dispatcher) {
-        dispatcher.immigrate()
-    })
-
-    colleague.connectTo(conference)
 
     var Shuttle = require('prolific.shuttle')
+    var Colleague = require('colleague')
+    var Conference = require('conference')
+    var Exclusive = require('./exclusive')
 
-    var colleague = new Colleage(program)
+    var colleague = Colleague.connect(program)
+    var exclusive = new Exclusive(program.argv.slice())
 
     var logger = require('prolific.logger').createLogger('exclusive')
-
     var shuttle = Shuttle.shuttle(program, logger)
+
+    var conference = new Conference(exclusive, function (dispatcher) {
+        dispatcher.government()
+    })
+
+    colleague.spigot.emptyInto(conference.basin)
+    // conference.spigot.emptyInto(colleague.basin)
 
     process.on('shutdown', colleague.close.bind(colleague))
     process.on('shutdown', shuttle.close.bind(shuttle))
 
-    logger.info('started')
+    logger.info('started', { $argv: program.argv })
 }))

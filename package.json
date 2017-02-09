@@ -21,16 +21,17 @@
     },
     "dependencies":
     {
-                            "arguable":                     "4.3.x",
+                            "arguable":                     "5.0.x",
                             "cadence":                      "1.0.x",
                             "conference":                   "0.2.x",
+                            "delta":                        "1.2.x",
+                            "prolific.shuttle":             "7.0.x",
+                            "prolific":                     "5.0.x",
                             "resurrect":                    "0.0.x"
     },
     "devDependencies":
     {
-                            "proof":                        "1.2.x",
-                            "paxos":                        "3.8.x",
-                            "islander":                     "0.1.x"
+                            "proof":                        "1.2.x"
     },
     "main":                 "exclusive.bin",
     "bin":
