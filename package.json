@@ -25,8 +25,8 @@
                             "cadence":                      "1.0.x",
                             "conference":                   "0.2.x",
                             "delta":                        "1.2.x",
-                            "prolific.shuttle":             "7.0.x",
                             "prolific":                     "5.0.x",
+                            "prolific.shuttle":             "7.0.x",
                             "resurrect":                    "0.0.x"
     },
     "devDependencies":
