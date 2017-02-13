@@ -22,13 +22,13 @@
     },
     "dependencies":
     {
-                            "compassion.conduit":           "0.3.x",
+                            "compassion.conduit":           "0.4.x",
                             "compassion":                   "0.1.x",
                             "mingle":                       "0.2.x",
                             "mingle.static":                "0.2.x",
-                            "prolific":                     "5.0.x",
+                            "prolific":                     "7.2.x",
                             "prolific.stdio":               "1.1.x",
-                            "prolific.syslog":              "1.1.x",
+                            "prolific.syslog":              "1.2.x",
                             "wafer":                        "4.0.x"
     },
     "devDependencies":
