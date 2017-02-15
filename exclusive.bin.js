@@ -26,17 +26,18 @@ require('arguable')(module, require('cadence')(function (async, program) {
     var exclusive = new Exclusive(program.argv.slice())
 
     var logger = require('prolific.logger').createLogger('exclusive')
+
+    logger.info('started', { $argv: program.argv })
+
     var shuttle = Shuttle.shuttle(program, logger)
+    process.on('shutdown', shuttle.close.bind(shuttle))
 
     var conference = new Conference(exclusive, function (dispatcher) {
         dispatcher.government()
     })
 
     colleague.spigot.emptyInto(conference.basin)
-    // conference.spigot.emptyInto(colleague.basin)
+    conference.spigot.emptyInto(colleague.basin)
 
     process.on('shutdown', colleague.close.bind(colleague))
-    process.on('shutdown', shuttle.close.bind(shuttle))
-
-    logger.info('started', { $argv: program.argv })
 }))

@@ -23,8 +23,8 @@
     {
                             "arguable":                     "5.0.x",
                             "cadence":                      "1.0.x",
-                            "conference":                   "0.2.8",
-                            "colleague":                    "0.0.6",
+                            "conference":                   "0.3.0",
+                            "colleague":                    "0.0.7",
                             "delta":                        "1.2.x",
                             "prolific.shuttle":             "9.0.x",
                             "resurrect":                    "0.0.x"
