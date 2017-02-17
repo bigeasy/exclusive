@@ -21,8 +21,11 @@ require('arguable')(module, require('cadence')(function (async, program) {
     var Colleague = require('colleague')
     var Conference = require('conference')
     var Exclusive = require('./exclusive')
+    var Destructor = require('destructible')
 
-    var colleague = Colleague.connect(program)
+    var destructor = new Destructor('exclusive')
+
+    var colleague = new Colleague
     var exclusive = new Exclusive(program.argv.slice())
 
     var logger = require('prolific.logger').createLogger('exclusive')
@@ -30,7 +33,10 @@ require('arguable')(module, require('cadence')(function (async, program) {
     logger.info('started', { $argv: program.argv })
 
     var shuttle = Shuttle.shuttle(program, logger)
-    process.on('shutdown', shuttle.close.bind(shuttle))
+
+    process.on('shutdown', destructor.destroy.bind(destructor))
+
+    destructor.addDestructor('shuttle', shuttle.close.bind(shuttle))
 
     var conference = new Conference(exclusive, function (dispatcher) {
         dispatcher.government()
@@ -39,5 +45,10 @@ require('arguable')(module, require('cadence')(function (async, program) {
     colleague.spigot.emptyInto(conference.basin)
     conference.spigot.emptyInto(colleague.basin)
 
-    process.on('shutdown', colleague.close.bind(colleague))
+    destructor.async(async, 'collegue')(function () {
+        destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
+        colleague.connect(program, async())
+    })
+
+    logger.info('started', {})
 }))

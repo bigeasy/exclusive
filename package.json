@@ -22,9 +22,10 @@
     "dependencies":
     {
                             "arguable":                     "5.0.x",
+                            "destructible":                 "0.1.x" ,
                             "cadence":                      "1.0.x",
-                            "conference":                   "0.3.0",
-                            "colleague":                    "0.0.7",
+                            "conference":                   "0.4.x",
+                            "colleague":                    "0.3.x",
                             "delta":                        "1.2.x",
                             "prolific.shuttle":             "9.0.x",
                             "resurrect":                    "0.0.x"
