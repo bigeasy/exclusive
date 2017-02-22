@@ -45,10 +45,19 @@ require('arguable')(module, require('cadence')(function (async, program) {
     colleague.spigot.emptyInto(conference.basin)
     conference.spigot.emptyInto(colleague.basin)
 
-    destructor.async(async, 'collegue')(function () {
+    // TODO Implement `unlatch`...
+    destructor.addDestructor('started', { object: started, method: 'unlatch' })
+
+    destructor.async(cadence(function (async () {
         destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
-        colleague.connect(program, async())
-    })
+        async(function () {
+            colleague.connect(program, async())
+        }, function () {
+            started.notify()
+        })
+    }))
 
     logger.info('started', {})
+
+    started.wait(async())
 }))
