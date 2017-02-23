@@ -22,6 +22,7 @@ require('arguable')(module, require('cadence')(function (async, program) {
     var Conference = require('conference')
     var Exclusive = require('./exclusive')
     var Destructor = require('destructible')
+    var abend = require('abend')
 
     var destructor = new Destructor('exclusive')
 
@@ -45,19 +46,7 @@ require('arguable')(module, require('cadence')(function (async, program) {
     colleague.spigot.emptyInto(conference.basin)
     conference.spigot.emptyInto(colleague.basin)
 
-    // TODO Implement `unlatch`...
-    destructor.addDestructor('started', { object: started, method: 'unlatch' })
-
-    destructor.async(cadence(function (async () {
-        destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
-        async(function () {
-            colleague.connect(program, async())
-        }, function () {
-            started.notify()
-        })
-    }))
+    colleague.connect(program, abend)
 
     logger.info('started', {})
-
-    started.wait(async())
 }))
