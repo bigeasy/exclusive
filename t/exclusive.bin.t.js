@@ -2,11 +2,13 @@ require('proof/redux')(1, require('cadence')(prove))
 
 function prove (async, assert) {
     var bin = require('../exclusive.bin')
-    var io
+    var abend = require('abend')
+    var program
     async(function () {
-        io = bin([ 't/term.js' ], async())
+        program = bin([ 't/term.js' ], abend)
+        program.started.wait(async())
     }, function () {
         assert(true, 'started')
-        io.emit('SIGTERM')
+        program.emit('SIGTERM')
     })
 }

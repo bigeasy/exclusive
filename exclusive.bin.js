@@ -23,10 +23,10 @@ require('arguable')(module, require('cadence')(function (async, program) {
     var Exclusive = require('./exclusive')
     var Destructor = require('destructible')
     var abend = require('abend')
+    var Signal = require('signal')
 
     var destructor = new Destructor('exclusive')
 
-    var colleague = new Colleague
     var exclusive = new Exclusive(program.argv.slice())
 
     var logger = require('prolific.logger').createLogger('exclusive')
@@ -39,14 +39,19 @@ require('arguable')(module, require('cadence')(function (async, program) {
 
     destructor.addDestructor('shuttle', shuttle.close.bind(shuttle))
 
+    program.started = new Signal
+
     var conference = new Conference(exclusive, function (dispatcher) {
         dispatcher.government()
     })
+    var colleague = new Colleague(conference)
 
-    colleague.spigot.emptyInto(conference.basin)
-    conference.spigot.emptyInto(colleague.basin)
-
-    colleague.connect(program, abend)
+    destructor.async(async, 'collegue')(function () {
+        destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
+        colleague.connect(program, async())
+    })
 
     logger.info('started', {})
+
+    program.started.unlatch()
 }))

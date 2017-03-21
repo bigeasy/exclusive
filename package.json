@@ -21,14 +21,17 @@
     },
     "dependencies":
     {
+                            "abend":                        "1.0.x",
                             "arguable":                     "5.0.x",
-                            "destructible":                 "0.1.x" ,
                             "cadence":                      "1.0.x",
+                            "colleague":                    "0.4.x",
                             "conference":                   "0.4.x",
-                            "colleague":                    "0.3.x",
                             "delta":                        "1.2.x",
+                            "destructible":                 "0.1.x",
+                            "prolific.logger":              "3.0.x",
                             "prolific.shuttle":             "9.0.x",
-                            "resurrect":                    "0.0.x"
+                            "resurrect":                    "0.0.x",
+                            "signal":                       "1.8.x"
     },
     "devDependencies":
     {
