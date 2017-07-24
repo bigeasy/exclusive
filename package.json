@@ -31,7 +31,7 @@
                             "prolific.logger":              "3.0.x",
                             "prolific.shuttle":             "9.0.x",
                             "resurrect":                    "0.0.x",
-                            "signal":                       "1.8.x"
+                            "signal":                       "3.0.x"
     },
     "devDependencies":
     {
