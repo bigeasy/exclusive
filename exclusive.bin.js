@@ -39,19 +39,15 @@ require('arguable')(module, require('cadence')(function (async, program) {
 
     destructor.addDestructor('shuttle', shuttle.close.bind(shuttle))
 
-    program.started = new Signal
-
     var conference = new Conference(exclusive, function (dispatcher) {
         dispatcher.government()
     })
-    var colleague = new Colleague(conference)
 
-    destructor.async(async, 'collegue')(function () {
-        destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
-        colleague.connect(program, async())
-    })
+    var colleague = new Colleague(conference)
+    destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
+    colleague.listen(program, destructor.monitor('colleague'))
 
     logger.info('started', {})
 
-    program.started.unlatch()
+    program.ready.unlatch()
 }))

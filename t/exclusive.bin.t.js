@@ -1,4 +1,4 @@
-require('proof/redux')(1, require('cadence')(prove))
+require('proof')(1, require('cadence')(prove))
 
 function prove (async, assert) {
     var bin = require('../exclusive.bin')
@@ -6,7 +6,7 @@ function prove (async, assert) {
     var program
     async(function () {
         program = bin([ 't/term.js' ], abend)
-        program.started.wait(async())
+        program.ready.wait(async())
     }, function () {
         assert(true, 'started')
         program.emit('SIGTERM')
