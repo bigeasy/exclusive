@@ -1,0 +1,19 @@
+Exclusive
+
+Run only one process at a time in a cluster.
+
+    Discussion:     https://github.com/bigeasy/exclusive/issues/1
+
+    Documentation:  https://bigeasy.github.io/exclusive
+    Source:         https://github.com/bigeasy/exclusive
+    Issues:         https://github.com/bigeasy/exclusive/issues
+    CI:             https://travis-ci.org/bigeasy/exclusive
+    Coverage:       https://coveralls.io/github/bigeasy/exclusive
+
+    Install:        `npm install exclusive`
+
+    License:        MIT
+
+To learn everything you want to know about Exclusive start here:
+
+    http://bigeasy.github.io/exclusive
