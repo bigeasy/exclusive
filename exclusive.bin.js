@@ -21,11 +21,11 @@ require('arguable')(module, require('cadence')(function (async, program) {
     var Colleague = require('colleague')
     var Conference = require('conference')
     var Exclusive = require('./exclusive')
-    var Destructor = require('destructible')
+    var Destructible = require('destructible')
     var abend = require('abend')
     var Signal = require('signal')
 
-    var destructor = new Destructor('exclusive')
+    var destructible = new Destructible('exclusive')
 
     var exclusive = new Exclusive(program.argv.slice())
 
@@ -35,17 +35,17 @@ require('arguable')(module, require('cadence')(function (async, program) {
 
     var shuttle = Shuttle.shuttle(program, logger)
 
-    process.on('shutdown', destructor.destroy.bind(destructor))
+    process.on('shutdown', destructible.destroy.bind(destructible))
 
-    destructor.addDestructor('shuttle', shuttle.close.bind(shuttle))
+    destructible.addDestructor('shuttle', shuttle, 'close')
 
     var conference = new Conference(exclusive, function (dispatcher) {
         dispatcher.government()
     })
 
     var colleague = new Colleague(conference)
-    destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
-    colleague.listen(program, destructor.monitor('colleague'))
+    destructible.addDestructor('collegue', colleague, 'destroy')
+    colleague.listen(program, destructible.monitor('colleague'))
 
     logger.info('started', {})
 
