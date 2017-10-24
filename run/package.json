@@ -1,6 +1,7 @@
 {
+    "private":              true,
     "name":                 "exclusive",
-    "version":              "0.0.3",
+    "version":              "0.0.0",
     "description":
 
       "Run only one process at a time in a cluster.",
@@ -21,22 +22,17 @@
     },
     "dependencies":
     {
-                            "arguable":                     "6.0.x",
-                            "abend":                        "1.0.x",
-                            "arguable":                     "5.2.x",
-                            "cadence":                      "1.0.x",
-                            "colleague":                    "0.8.x",
-                            "conference":                   "0.12.x",
-                            "delta":                        "1.2.x",
-                            "destructible":                 "0.14.x",
-                            "prolific.logger":              "5.0.x",
-                            "prolific.shuttle":             "11.0.x",
-                            "resurrect":                    "0.0.x",
-                            "signal":                       "3.0.x"
+                            "compassion.conduit":           "0.4.x",
+                            "compassion":                   "0.1.x",
+                            "mingle":                       "0.2.x",
+                            "mingle.static":                "0.2.x",
+                            "prolific":                     "7.2.x",
+                            "prolific.stdio":               "1.1.x",
+                            "prolific.syslog":              "1.2.x",
+                            "wafer":                        "4.0.x"
     },
     "devDependencies":
     {
-                            "proof":                        "3.0.x"
     },
     "main":                 "exclusive.bin",
     "bin":

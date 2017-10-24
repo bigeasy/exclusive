@@ -16,32 +16,38 @@
  */
 require('arguable')(module, require('cadence')(function (async, program) {
     program.helpIf(program.ultimate.help)
-    program.required('discovery', 'health')
-
-    var http = require('http')
 
     var Shuttle = require('prolific.shuttle')
+    var Colleague = require('colleague')
+    var Conference = require('conference')
+    var Exclusive = require('./exclusive')
+    var Destructor = require('destructible')
     var abend = require('abend')
+    var Signal = require('signal')
 
-    var logger = require('prolific.logger').createLogger('bigeasy.exclusive')
+    var destructor = new Destructor('exclusive')
+
+    var exclusive = new Exclusive(program.argv.slice())
+
+    var logger = require('prolific.logger').createLogger('exclusive')
+
+    logger.info('started', { $argv: program.argv })
 
     var shuttle = Shuttle.shuttle(program, logger)
 
-    var Vizsla = require('vizsla')
-    var Monitor = require('./monitor')
-    var Uptime = require('mingle.uptime')
-    var uptime = new Uptime(program.ultimate.discovery, program.ultimate.colleagues, new Vizsla)
-    var monitor = new Monitor(new Vizsla, 'http://%s', uptime, program.ultimate.health)
+    process.on('shutdown', destructor.destroy.bind(destructor))
 
-    var Isochronous = require('isochronous')
-    var isochronous = new Isochronous({
-        operation: { object: monitor, method: 'check' },
-        interval: 1000
+    destructor.addDestructor('shuttle', shuttle.close.bind(shuttle))
+
+    var conference = new Conference(exclusive, function (dispatcher) {
+        dispatcher.government()
     })
-    isochronous.run(abend)
 
-    process.on('shutdown', isochronous.stop.bind(isochronous))
-    process.on('shutdown', shuttle.close.bind(shuttle))
+    var colleague = new Colleague(conference)
+    destructor.addDestructor('collegue', colleague.destroy.bind(colleague))
+    colleague.listen(program, destructor.monitor('colleague'))
 
-    logger.info('started')
+    logger.info('started', {})
+
+    program.ready.unlatch()
 }))
