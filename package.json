@@ -21,7 +21,7 @@
     },
     "dependencies":
     {
-                            "arguable":                     "4.3.x",
+                            "arguable":                     "6.0.x",
                             "cadence":                      "1.0.x",
                             "conference":                   "0.2.x",
                             "resurrect":                    "0.0.x"
