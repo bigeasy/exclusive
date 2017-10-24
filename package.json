@@ -30,7 +30,7 @@
                             "delta":                        "1.2.x",
                             "destructible":                 "0.14.x",
                             "prolific.logger":              "5.0.x",
-                            "prolific.shuttle":             "11.0.x",
+                            "prolific.shuttle":             "15.0.x",
                             "resurrect":                    "0.0.x",
                             "signal":                       "3.0.x"
     },
