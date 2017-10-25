@@ -49,5 +49,6 @@ require('arguable')(module, require('cadence')(function (async, program) {
 
     logger.info('started', {})
 
+    destructible.compassion.wait(async())
     program.ready.unlatch()
 }))
