@@ -1,10 +1,10 @@
-// Control-flow utilities.
+// Asynchronous control flow.
 var cadence = require('cadence')
 
 // Child process monitor.
 var Resurrect = require('resurrect')
 
-// Construct a process monitor that will keep an instace of the given aruments
+// Construct a process monitor that will keep an instance of the given arguments
 // running.
 
 //

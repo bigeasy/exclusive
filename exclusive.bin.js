@@ -3,7 +3,7 @@
 /*
 
     ___ usage ___ en_US ___
-    compassion colleague child <child options>
+    compassion colleague exclusive <program to monitor>
 
     options:
 
