@@ -23,7 +23,6 @@ require('arguable')(module, require('cadence')(function (async, program) {
     var Exclusive = require('./exclusive')
     var Destructible = require('destructible')
     var abend = require('abend')
-    var Signal = require('signal')
 
     var destructible = new Destructible('exclusive')
 
