@@ -1,6 +1,6 @@
 {
     "name":                 "exclusive",
-    "version":              "0.0.3",
+    "version":              "0.0.4",
     "description":
 
       "Run only one process at a time in a cluster.",
