@@ -29,7 +29,7 @@ console.log(JSON.stringify({
                     name: 'environment',
                     image: 'homeport/image-exclusive:latest',
                     imagePullPolicy: 'Never',
-                    command: [ '/home/exclusive/minikube/bin/environment' ],
+                    command: [ '/home/node/exclusive/bin/environment' ],
                     env: [{
                         name: 'KUBERNETES_POD_NAME',
                         valueFrom: { fieldRef: { fieldPath: 'metadata.name' } }
@@ -41,7 +41,7 @@ console.log(JSON.stringify({
                     name: 'logger',
                     image: 'homeport/image-exclusive:latest',
                     imagePullPolicy: 'Never',
-                    command: [ '/home/exclusive/minikube/bin/logger' ]
+                    command: [ '/home/node/exclusive/bin/logger' ]
                 }]
             }
         }

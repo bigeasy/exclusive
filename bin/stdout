@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source $(dirname $(readlink -f $0))/environment.bash
+
+prolific stdio syslog --serializer wafer prolific.udp --bind 8514

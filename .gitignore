@@ -4,3 +4,5 @@
 /coverage
 /docs
 /.wiseguy
+/flattened/node_modules
+/minikube/config/*.made.json

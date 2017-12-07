@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source $(dirname $(readlink -f $0))/../environment.bash
+
+[[ ! -z "$AGENT_LOGGER_AUTHORITY" ]] || \
+    service_abend "AGENT_LOGGER_AUTHORITY is required to run relay logger."
+
+prolific tcp://$AGENT_LOGGER_AUTHORITY prolific.udp --bind 8514
