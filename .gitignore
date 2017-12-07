@@ -3,3 +3,5 @@
 /.proof.out
 /coverage
 /docs
+/flattened/node_modules
+/minikube/config/*.made.json

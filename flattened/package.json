@@ -1,0 +1,24 @@
+{
+    "private":              true,
+    "name":                 "containerization",
+    "version":              "0.0.0",
+    "description":
+
+      "Containerization to pull dependencies into a single `node_modules`.",
+
+    "license":              "MIT",
+    "dependencies":
+    {
+                            "compassion":                   "1.1.x",
+                            "compassion.colleague":         "0.22.x",
+                            "compassion.conduit":           "0.16.x",
+                            "exclusive":                    "..",
+                            "nascent.environment":          "0.4.x",
+                            "olio":                         "0.4.x",
+                            "prolific":                     "15.0.x",
+                            "prolific.stdio":               "5.0.x",
+                            "prolific.syslog":              "7.0.x",
+                            "prolific.udp":                 "5.2.x",
+                            "wafer":                        "7.0.x"
+    }
+}

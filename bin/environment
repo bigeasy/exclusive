@@ -1,0 +1,26 @@
+#!/bin/bash
+
+source $(dirname $(readlink -f $0))/functions.bash
+
+export KUBERNETES_NAMESPACE=$(</run/secrets/kubernetes.io/serviceaccount/namespace)
+
+if [[ "$KUBERNETES_IS_ON_AWS" = "1" ]]; then
+    export KUBERNETES_PUBLIC_IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+    export KUBERNETES_PRIVATE_IP=$KUBERNETES_POD_IP
+else
+    if [[ "ip-$(echo "$KUBERNETES_POD_IP" | tr '.' '-').ec2.internal" = "$HOSTNAME" ]]; then
+        export KUBERNETES_IS_ON_AWS=1
+        export KUBERNETES_PUBLIC_IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+        export KUBERNETES_PRIVATE_IP=$KUBERNETES_POD_IP
+    else
+        export KUBERNETES_IS_ON_AWS=0
+        export KUBERNETES_PUBLIC_IP=$KUBERNETES_POD_IP
+        export KUBERNETES_PRIVATE_IP=$KUBERNETES_POD_IP
+    fi
+fi
+
+dump_env
+
+echo "starting envd"
+
+prolific stdio syslog --serializer wafer environmentd --bind 127.0.0.1:8088
