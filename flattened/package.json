@@ -13,6 +13,8 @@
                             "compassion.colleague":         "0.22.x",
                             "compassion.conduit":           "0.16.x",
                             "exclusive":                    "..",
+                            "mingle":                       "0.3.x",
+                            "mingle.kubernetes":            "0.4.x",
                             "nascent.environment":          "0.4.x",
                             "olio":                         "0.4.x",
                             "prolific":                     "15.0.x",
