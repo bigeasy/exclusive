@@ -23,7 +23,7 @@ console.log(JSON.stringify({
             },
             spec: {
                 restartPolicy: 'Always',
-                terminationGracePeriod: 5,
+                terminationGracePeriodSeconds: 5,
                 dnsPolicy: 'ClusterFirst',
                 containers: [{
                     name: 'environment',
@@ -41,7 +41,24 @@ console.log(JSON.stringify({
                     name: 'logger',
                     image: 'homeport/image-exclusive:latest',
                     imagePullPolicy: 'Never',
-                    command: [ '/home/node/exclusive/bin/logger' ]
+                    command: [ '/home/node/exclusive/bin/stdout' ]
+                }, {
+                    name: 'discovery',
+                    image: 'homeport/image-exclusive:latest',
+                    imagePullPolicy: 'Never',
+                    command: [ '/home/node/exclusive/bin/discovery' ],
+                    ports: [{ containerPort: 8486, name: 'conduit', protocol: 'TCP' }]
+                }, {
+                    name: 'conduit',
+                    image: 'homeport/image-exclusive:latest',
+                    imagePullPolicy: 'Never',
+                    command: [ '/home/node/exclusive/bin/conduit' ],
+                    ports: [{ containerPort: 8486, name: 'conduit', protocol: 'TCP' }]
+                }, {
+                    name: 'exclusive',
+                    image: 'homeport/image-exclusive:latest',
+                    imagePullPolicy: 'Never',
+                    command: [ '/home/node/exclusive/bin/exclusive' ]
                 }]
             }
         }
