@@ -17,7 +17,7 @@
     "repository":
     {
                             "type": "git",
-                            "url": "http://github.com/bigeasy/exclusive.git"
+                            "url": "bigeasy/exclusive"
     },
     "dependencies":
     {
