@@ -78,7 +78,6 @@
     <span class="hljs-keyword">var</span> Exclusive = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./exclusive'</span>)
     <span class="hljs-keyword">var</span> Destructible = <span class="hljs-built_in">require</span>(<span class="hljs-string">'destructible'</span>)
     <span class="hljs-keyword">var</span> abend = <span class="hljs-built_in">require</span>(<span class="hljs-string">'abend'</span>)
-    <span class="hljs-keyword">var</span> Signal = <span class="hljs-built_in">require</span>(<span class="hljs-string">'signal'</span>)
 
     <span class="hljs-keyword">var</span> destructible = <span class="hljs-keyword">new</span> Destructible(<span class="hljs-string">'exclusive'</span>)
 
@@ -106,9 +105,7 @@
 
     destructible.completed.wait(<span class="hljs-keyword">async</span>())
     program.ready.unlatch()
-}))
-
-</pre></div></div>
+}))</pre></div></div>
 
         </li>
 
