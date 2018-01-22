@@ -2,23 +2,26 @@ console.log(JSON.stringify({
     kind: 'Deployment',
     apiVersion: 'extensions/v1beta1',
     metadata: {
-        name: 'exclusive',
+        name: 'chaperon',
         namespace: 'exclusive',
         labels: {
-            name: 'exclusive'
+            name: 'chaperon',
+            environment: 'minikube'
         }
     },
     spec: {
         replicas: 1,
         selector: {
             matchLabels: {
-                name: 'exclusive'
+                name: 'chaperon',
+                environment: 'minikube'
             }
         },
         template: {
             metadata: {
                 labels: {
-                    name: 'exclusive'
+                    name: 'chaperon',
+                    environment: 'minikube'
                 }
             },
             spec: {
@@ -36,6 +39,9 @@ console.log(JSON.stringify({
                     }, {
                         name: 'KUBERNETES_POD_IP',
                         valueFrom: { fieldRef: { fieldPath: 'status.podIP' } }
+                    }, {
+                        nmae: 'COMPASSION_KUBERNETES_DISCOVERY_POD_NAME',
+                        value: 'exclusive'
                     }]
                 }, {
                     name: 'logger',
@@ -49,16 +55,10 @@ console.log(JSON.stringify({
                     command: [ '/home/node/exclusive/bin/discovery' ],
                     ports: [{ containerPort: 8486, name: 'conduit', protocol: 'TCP' }]
                 }, {
-                    name: 'conduit',
+                    name: 'chaperon',
                     image: 'homeport/image-exclusive:latest',
                     imagePullPolicy: 'Never',
-                    command: [ '/home/node/exclusive/bin/conduit' ],
-                    ports: [{ containerPort: 8486, name: 'conduit', protocol: 'TCP' }]
-                }, {
-                    name: 'exclusive',
-                    image: 'homeport/image-exclusive:latest',
-                    imagePullPolicy: 'Never',
-                    command: [ '/home/node/exclusive/bin/exclusive' ]
+                    command: [ '/home/node/exclusive/bin/chaperon' ]
                 }]
             }
         }
