@@ -27,7 +27,7 @@
                             "colleague":                    "0.10.x",
                             "conference":                   "0.23.x",
                             "delta":                        "1.2.x",
-                            "destructible":                 "0.17.x",
+                            "destructible":                 "0.28.x",
                             "prolific.logger":              "5.0.x",
                             "prolific.shuttle":             "17.0.x",
                             "reactor":                      "10.2.x",

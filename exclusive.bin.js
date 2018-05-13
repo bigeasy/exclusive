@@ -36,14 +36,14 @@ require('arguable')(module, require('cadence')(function (async, program) {
 
     process.on('shutdown', destructible.destroy.bind(destructible))
 
-    destructible.addDestructor('shuttle', shuttle, 'close')
+    destructible.destruct.wait(shuttle, 'close')
 
     var conference = new Conference(exclusive, function (dispatcher) {
         dispatcher.government()
     })
 
     var colleague = new Colleague(conference)
-    destructible.addDestructor('collegue', colleague, 'destroy')
+    destructible.destruct.wait(colleague, 'destroy')
     colleague.listen(program, destructible.monitor('colleague'))
 
     logger.info('started', {})
