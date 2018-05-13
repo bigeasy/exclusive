@@ -28,7 +28,7 @@
                             "destructible":                 "0.28.x",
                             "server-destroy":               "1.0.1",
                             "prolific.logger":              "5.0.x",
-                            "prolific.shuttle":             "17.0.x",
+                            "prolific.shuttle":             "18.0.x",
                             "reactor":                      "10.2.x",
                             "resurrect":                    "0.0.x"
     },
