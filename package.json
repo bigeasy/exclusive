@@ -30,6 +30,7 @@
                             "destructible":                 "0.17.x",
                             "prolific.logger":              "5.0.x",
                             "prolific.shuttle":             "17.0.x",
+                            "reactor":                      "10.2.x",
                             "resurrect":                    "0.0.x"
     },
     "devDependencies":

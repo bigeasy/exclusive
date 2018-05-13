@@ -1,6 +1,8 @@
 // Asynchronous control flow.
 var cadence = require('cadence')
 
+var reactor = require('reactor')
+
 // Child process monitor.
 var Resurrect = require('resurrect')
 
@@ -15,8 +17,8 @@ function Exclusive (argv) {
 // Start our child process if we're the leader, stop it if we're not.
 
 //
-Exclusive.prototype.government = cadence(function (async, conference) {
-    if (conference.isLeader) {
+Exclusive.prototype._government = cadence(function (async, request) {
+    if (request.body.self == request.body.government.majority[0]) {
         this.child.start()
     } else {
         this.child.stop(async())

@@ -5,11 +5,25 @@ function prove (async, assert) {
     var Exclusive = require('../exclusive')
     var exclusive = new Exclusive([ 'node', 't/term.js' ])
     async(function () {
-        exclusive.government({ isLeader: true }, async())
+        exclusive._government({
+            body: {
+                self: 'first',
+                government: {
+                    majority: [ 'first' ]
+                }
+            }
+        }, async())
     }, function () {
         delta(async()).ee(exclusive.child.process).on('message')
     }, function (message) {
         assert(message, 'started')
-        exclusive.government({ isLeader: false }, async())
+        exclusive._government({
+            body: {
+                self: 'first',
+                government: {
+                    majority: [ 'second' ]
+                }
+            }
+        }, async())
     })
 }
