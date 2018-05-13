@@ -7,6 +7,9 @@
 
     options:
 
+        --bind <interface:port>
+            the interface and port to listen to
+
         --help
             display help message
 
@@ -17,37 +20,41 @@
 require('arguable')(module, require('cadence')(function (async, program) {
     program.helpIf(program.ultimate.help)
 
+    var http = require('http')
+    var delta = require('delta')
+    var destroyer = require('server-destroy')
+
     var Shuttle = require('prolific.shuttle')
-    var Colleague = require('colleague')
-    var Conference = require('conference')
     var Exclusive = require('./exclusive')
     var Destructible = require('destructible')
     var abend = require('abend')
 
-    var destructible = new Destructible('exclusive')
+    var middleware = new Exclusive
+
+    var destructible = new Destructible('exclusive.bin')
+    program.on('shutdown', destructible.destroy.bind(destructible))
+
+    var logger = require('prolific.logger').createLogger('exclusive')
+    var shuttle = Shuttle.shuttle(program, logger)
+    destructible.destruct.wait(shuttle, 'close')
+
+    destructible.completed.wait(async())
 
     var exclusive = new Exclusive(program.argv.slice())
 
-    var logger = require('prolific.logger').createLogger('exclusive')
+    var server = http.createServer(middleware.reactor.middleware)
+    destroyer(server)
+    delta(destructible.monitor('http')).ee(server).on('close')
+    destructible.destruct.wait(server, 'destroy')
 
-    logger.info('started', { $argv: program.argv })
+    program.required('bind')
+    program.validate(require('arguable/bindable'), 'bind')
 
-    var shuttle = Shuttle.shuttle(program, logger)
-
-    process.on('shutdown', destructible.destroy.bind(destructible))
-
-    destructible.destruct.wait(shuttle, 'close')
-
-    var conference = new Conference(exclusive, function (dispatcher) {
-        dispatcher.government()
+    async(function () {
+        program.ultimate.bind.listen(server, async())
+    }, function () {
+        program.ready.unlatch()
     })
 
-    var colleague = new Colleague(conference)
-    destructible.destruct.wait(colleague, 'destroy')
-    colleague.listen(program, destructible.monitor('colleague'))
-
-    logger.info('started', {})
-
-    destructible.completed.wait(async())
-    program.ready.unlatch()
+    logger.info('started', { $argv: program.argv })
 }))

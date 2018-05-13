@@ -1,7 +1,7 @@
 // Asynchronous control flow.
 var cadence = require('cadence')
 
-var reactor = require('reactor')
+var Reactor = require('reactor')
 
 // Child process monitor.
 var Resurrect = require('resurrect')
@@ -12,6 +12,9 @@ var Resurrect = require('resurrect')
 //
 function Exclusive (argv) {
     this.child = new Resurrect({ argv: argv })
+    this.reactor = new Reactor(this, function (dispatcher) {
+        dispatcher.dispatch('GET /', 'index')
+    })
 }
 
 // Start our child process if we're the leader, stop it if we're not.

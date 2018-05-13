@@ -5,10 +5,12 @@ function prove (async, assert) {
     var abend = require('abend')
     var program
     async(function () {
-        program = bin([ 't/term.js' ], abend)
-        program.ready.wait(async())
-    }, function () {
-        assert(true, 'started')
-        program.emit('SIGTERM')
+        program = bin([ '--bind', '127.0.0.1:8083', 't/term.js' ], async())
+        async(function () {
+            program.ready.wait(async())
+        }, function () {
+            assert(true, 'started')
+            program.emit('SIGTERM')
+        })
     })
 }
